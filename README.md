@@ -24,8 +24,8 @@ All the other values are flagged as good with a iode_quality_flag = 1
 Input: CRUSIE-chl-grazing-experiments-fofa-clean.csv files 
 Outputs: CRUISE-chla-grazing-experiments-chl-conc-clean.csv files.
 
-The **chl_grazing_experiment_chl_conc_clean_special.m** Matlab script is to correct some T0 Chl-a concentration for few stations. In some cases (described below), the values of the T0 dil were missing, making the rates calculation impossible. In these case, the dilution values obatined from the other filters or from Flow-Cytometry (FCM) were used.
-EN661 - L2: T0 dil >0&<200 (GFF) Chl-a conc values were way too high (>60%), while the dilution obatined from FCM and 10um filters gave the same dilution values = 23%. T0 dil >0&<200 Chl-a conc are then set as 23% of T0 wsw >0&<200 Chl-a conc.
-EN668 - L6-D2: All T0 dil values (>0&<200, >10&<200 and >0&<10) were questionable with dilution ranging from 43% to 76%, while according to the FCM we had 20% dilution. T0 wsw >0&<200 values looks correct when compared to post-calibrated underway fluorescence. All the T0 wsw values are then considered are good and a T0 dil = 20% T0 wsw.
+The **chl_grazing_experiment_chl_conc_clean_special.m** Matlab script is to correct some T0 Chl-a concentration for few stations. In some cases (described below), the values of the T0 dil were missing, making the rates calculation impossible. In these case, the dilution values obatined from the other filters or from Flow-Cytometry (FCM) were used:
+1) EN661 - L2: T0 dil >0&<200 (GFF) Chl-a conc values were way too high (>60%), while the dilution obatined from FCM and 10um filters gave the same dilution values = 23%. T0 dil >0&<200 Chl-a conc are then set as 23% of T0 wsw >0&<200 Chl-a conc.
+2) EN668 - L6-D2: All T0 dil values (>0&<200, >10&<200 and >0&<10) were questionable with dilution ranging from 43% to 76%, while according to the FCM we had 20% dilution. T0 wsw >0&<200 values looks correct when compared to post-calibrated underway fluorescence. All the T0 wsw values are then considered are good and a T0 dil = 20% T0 wsw.
 Input: CRUSIE-chl-grazing-experiments-chl-conc-clean.csv files 
 Outputs: CRUISE-chla-grazing-experiments-clean.csv files.
