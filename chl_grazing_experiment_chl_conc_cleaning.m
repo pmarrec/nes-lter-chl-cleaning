@@ -1,19 +1,28 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%Matlab script for Chl-a conc cleaning of the raw Chl-a
-%obtained during dilution (grazing) experiments.
+% Matlab script for Chl-a conc cleaning of the raw Chl-a
+% obtained during dilution (grazing) experiments.
 %
-%Cleaning protocol:
+% Chl-a conc cleaning:
+% All negative Chl-a conc are flagged as questionnable/suspect with a
+% iode_quality_flag = 3
+% Criteria, for each station/depth/treatment/triplicate values:
+% Each triplicate value should stand in the +/- 2 x %CV of
+% the mean values of the triplicate with a QC flag=1
+% %CV is considered as the mean %CV obtained on a given type of
+% filter (GFF/10um) at T0 and at TF.
+% All the values that don't fit these criteria are flagged as questionable
+% with a iode_quality_flag = 3
+% All the other values are flagged as good with a iode_quality_flag = 1
 %
-%Input: CRUSIE-chl-grazing-experiments-chl-calc.csv files with Chl-a
-%calculated from the chl_grazing_experiment_chl_calc.m script
+% Input: CRUSIE-chl-grazing-experiments-fofa-clean.csv files 
 %
-%Outputs: CRUISE-chla-grazing-experiments-clean.csv files.
+% Outputs: CRUISE-chla-grazing-experiments-chl-conc-clean.csv files.
 %
-%Written by Pierre Marrec
+% Written by Pierre Marrec
 %
-%pmarrec@uri.edu
+% pmarrec@uri.edu
 %
-%5/21/2022
+% 5/21/2022
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -206,7 +215,7 @@ for n1=1:numel(list)
             clear chl_avg chl_std chl_llim chl_ulim chl_cv
 
             %%%%%%%%%%%%%%%%%%%%%%%%%%
-            %T0 and >0 filters (no 200um screening EN)27 L11-B
+            %T0 and >0 filters (no 200um screening EN627 L11-B)
             %%%%%%%%%%%%%%%%%%%%%%%%%%
 
             %Identify all values obtained with >0&<10 filters at T0

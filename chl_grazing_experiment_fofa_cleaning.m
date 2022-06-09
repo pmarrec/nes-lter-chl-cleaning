@@ -1,19 +1,29 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%Matlab script for Chl-a conc cleaning of the raw Chl-a
-%obtained during dilution (grazing) experiments.
+% Matlab script for Chl-a conc cleaning of the raw Chl-a
+% obtained during dilution (grazing) experiments based on Fo/Fa ratios.
 %
-%Cleaning protocol:
+% Fo/Fa cleaning:
+% 2 criteria, for each cast/depth:
+% 1) within 1-3 range,
+% 2) witihn +/- 2 StdDev confidence interval for a given type of filter
+% GFF after screening with 200um mesh = >0&<200um
+% 10um after screening with 200um mesh = >10&<200um
+% GFF without screening with 200um mesh = >0 (for EN627 L11-B)
+% GFF with screening with 10um mesh = >0&<10um (for EN668)
+% All the values that don't fit these criteria are flagged as questionable
+% with a iode_quality_flag = 3
+% All the other values are flagged as good with a iode_quality_flag = 1
 %
-%Input: CRUSIE-chl-grazing-experiments-chl-calc.csv files with Chl-a
-%calculated from the chl_grazing_experiment_chl_calc.m script
+% Input: CRUSIE-chl-grazing-experiments-chl-calc.csv files with Chl-a
+% calculated from the chl_grazing_experiment_chl_calc.m script
 %
-%Outputs: CRUISE-chla-grazing-experiments-clean.csv files.
+% Outputs: CRUISE-chla-grazing-experiments-fofa-clean.csv files.
 %
-%Written by Pierre Marrec
+% Written by Pierre Marrec
 %
-%pmarrec@uri.edu
+% pmarrec@uri.edu
 %
-%5/21/2022
+% 5/21/2022
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
