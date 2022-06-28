@@ -1,7 +1,11 @@
 # nes-lter-chl-cleaning
 You can find here all the raw fluorescence data from all nes-lter cruises and the matlab scripts to perform an automated cleaning of the chl-a data that are used for growth/grazing calculation. Each cruise has separated csv files and data for all cruises are processed simultaneously.
 
-The raw fluorescence data for each cruise are stored in csv files in the "chl-grazing-experiment-raw" folder. The csv files contain the cast and niskin bottle numbers (in text format with '' to avoid considering some multiple cast/niskins entries as dates), the measured Fo, Fa, blank, blank_acid data with treatment information (T0_TF, dilution, nutrient_treatment, light_level, replicate_bottle and replicate_chl. The files also include the vol_filtered, the vol_extracted, the calibration coeficcient Fs and r and the start/end datetime of the incubations. date_time_utc_sampling, latitude, longitude, depth, nearest_sation and distance values will be retrieved later directly and automatically from the CTD files stored in the REST-API.
+The raw fluorescence data for each cruise are stored in csv files in the "chl-grazing-experiment-raw" folder. The csv files contain the cast and niskin bottle numbers (in text format with '' to avoid considering some multiple cast/niskins entries as dates), the measured Fo, Fa, blank, blank_acid data with treatment information (T0_TF, dilution, nutrient_treatment, light_level, replicate_bottle and replicate_chl. The files also include the vol_filtered, the vol_extracted, the calibration coeficcient Fs and r and the start/end datetime of the incubations. 
+
+The **chl_grazing_experiment_retrieve_ctd_data** Matlab script is used to retrieve the date_time_utc_sampling, latitude, longitude, depth, nearest_sation and distance values directly and automatically from the CTD files stored in the REST-API (except for AR66, data not available yet).
+Inputs: CRUSIE-chl-grazing-experiments-raw.csv files
+Outputs: CRUISE-chla-grazing-experiments-ctd-raw.csv files stored in the chl-grazing-experiment-ctd-raw folder
 
 The **chl_grazing_experiment_chl_calc.m** Matlab script is used to calculate the Chl-a and Phaoe pigments concentration, after calculation of Fo-blank, Fa-blank and Fo/Fa ratios.
 Inputs: CRUSIE-chl-grazing-experiments-raw.csv files with Fo, Fa, blank values and calibration coefficients Fs and r
