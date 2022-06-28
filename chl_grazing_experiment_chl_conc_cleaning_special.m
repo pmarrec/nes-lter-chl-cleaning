@@ -44,7 +44,7 @@ chemin = fullfile(rep1,ext);
 list = dir(chemin);%List all files of interest in the directory
 
 % EN661 - L2 - cast 2:  T0 dil >0&<200 (GFF) Chl-a = 23% T0 wsw >0&<200 Chl-a conc
-n1=9;
+n1=10;
 %load the .csv file of the corresponding cruise
 tablename=strcat(rep1,list(n1).name);
 T1=readtable(tablename);
@@ -68,7 +68,7 @@ clear n1 b1 c1 c2 chl_avg
 
 % EN668 - L6-D2 - cast 18, niskins 21-22-23-24:  
 % T0 dil all filters Chl-a = 20% T0 wsw all filters Chl-a conc
-n1=10;
+n1=11;
 %load the .csv file of the corresponding cruise
 tablename=strcat(rep1,list(n1).name);
 T1=readtable(tablename);
