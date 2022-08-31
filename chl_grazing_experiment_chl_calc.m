@@ -22,9 +22,9 @@
 clearvars, clc, close all
 
 %Set the directory where we work
-rep = 'C:\Users\pierr\Desktop\NES-LTER_Chla_Cleaning_Rates_Computation\';
+rep = 'C:\Users\pierr\My Drive\NES-LTER_Chla_Cleaning_Rates_Computation\';
 %Set the directory where the input raw data are
-rep1 = strcat(rep,'chl-grazing-experiment-ctd-raw\');
+rep1 = strcat(rep,'chl-grazing-experiment-temp-inc-raw\');
 %Set the directory where the output clean data are
 rep2 = strcat(rep,'chl-grazing-experiment-chl-calc\');
 
@@ -53,7 +53,7 @@ for n1=1:numel(list)
 
     %Save the new CRUISE-chla-grazing-experiments-clean.csv files for each
     %cruise
-    newname=strrep(list(n1).name,'ctd-raw','chl-calc');%Replace raw by clean
+    newname=strrep(list(n1).name,'temp-inc-raw','chl-calc');%Replace raw by clean
     newtablename=strcat(rep2,newname);%New tablename and path
     writetable(T1,newtablename)
 

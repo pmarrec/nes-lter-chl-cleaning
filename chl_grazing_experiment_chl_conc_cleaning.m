@@ -29,7 +29,7 @@
 clearvars, clc, close all
 
 %Set the directory where we work
-rep = 'C:\Users\pierr\Desktop\NES-LTER_Chla_Cleaning_Rates_Computation\';
+rep = 'C:\Users\pierr\My Drive\NES-LTER_Chla_Cleaning_Rates_Computation\';
 %Set the directory where the input raw data are
 rep1 = strcat(rep,'chl-grazing-experiment-fofa-clean\');
 %Set the directory where the output clean data are

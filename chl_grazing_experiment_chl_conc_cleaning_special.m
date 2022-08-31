@@ -32,7 +32,7 @@
 clearvars, clc, close all
 
 %Set the directory where we work
-rep = 'C:\Users\pierr\Desktop\NES-LTER_Chla_Cleaning_Rates_Computation\';
+rep = 'C:\Users\pierr\My Drive\NES-LTER_Chla_Cleaning_Rates_Computation\';
 %Set the directory where the input raw data are
 rep1 = strcat(rep,'chl-grazing-experiment-chl-conc-clean\');
 %Set the directory where the output clean data are
@@ -112,7 +112,7 @@ clear n1 c1 c2 chl_avg
 
 %Make some copies of all the other csv files in the new directory rep2,
 %with a new name, without any change
-for n1=1:8
+for n1=1:9
     %load the .csv file of the corresponding cruise
     tablename=strcat(rep1,list(n1).name);
     T1=readtable(tablename);
