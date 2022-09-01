@@ -7,7 +7,7 @@
 %Because of the lack of records in terms of which bottles in which tanks,
 %there are up to 3 CRUISE_temp_inc_X.csv files for each cruise.
 % The mean/std in each tank are retrieved and the values with the lowest
-% temperature difference will be kept and saved manually.
+% temperature difference will be kept and saved automatically.
 %From EN687, we are going to keep track of the tanks where the incubations
 %were made.
 %
