@@ -15,7 +15,7 @@
 % All the other values are flagged as good with a iode_quality_flag = 1
 %
 % Input: CRUSIE-chl-grazing-experiments-chl-calc.csv files with Chl-a
-% calculated from the chl_grazing_experiment_chl_calc.m script
+%        calculated from the chl_grazing_experiment_chl_calc.m script
 %
 % Outputs: CRUISE-chla-grazing-experiments-fofa-clean.csv files.
 %
@@ -23,14 +23,14 @@
 %
 % pmarrec@uri.edu
 %
-% 5/21/2022
+% 1/25/2022
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 clearvars, clc, close all
 
 %Set the directory where we work
-rep = 'C:\Users\pierr\My Drive\NES-LTER_Chla_Cleaning_Rates_Computation\';
+rep = 'C:\Users\pierr\Desktop\PostDoc_URI_Desktop\NES-LTER\NES-LTER_Chla_Cleaning_Rates_Computation\';
 %Set the directory where the input raw data are
 rep1 = strcat(rep,'chl-grazing-experiment-chl-calc\');
 %Set the directory where the output clean data are
@@ -101,7 +101,7 @@ for n1=1:numel(list)
             end
 
             clear FoFa FoFa_avg FoFa_std FoFa_ulim FoFa_llim b3
-            
+
             %Identify all values obtain with >10&<200 filters
             b4=b2 & strcmp(T1.filter_size,'>10&<200');
 
@@ -194,7 +194,7 @@ for n1=1:numel(list)
             end
 
             clear FoFa FoFa_avg FoFa_std FoFa_ulim FoFa_llim b5
-            
+
         end
 
 
@@ -208,7 +208,7 @@ for n1=1:numel(list)
     %cruise
     newname=strrep(list(n1).name,'chl-calc','fofa-clean');%Replace raw by clean
     newtablename=strcat(rep2,newname);%New tablename and path
-    
+
     writetable(T1,newtablename)
 
 end

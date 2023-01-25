@@ -25,8 +25,7 @@
 % Written by Pierre Marrec
 %
 % pmarrec@uri.edu
-%
-% June 2022
+% 1/25/2023
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 clearvars, clc, close all

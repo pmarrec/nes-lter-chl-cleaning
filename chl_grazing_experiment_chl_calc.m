@@ -1,28 +1,28 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%Matlab script for Chl-a conc computation from the raw fluorescence Fo and
-%Fa obtained during dilution (grazing) experiments.
+% Matlab script for Chl-a conc computation from the raw fluorescence Fo and
+% Fa obtained during dilution (grazing) experiments.
 %
-%Chl-a computation:
-%Chl-a = [Fs ([r/(r-1)] (Fo-Fa))] * vol_extracted / vol_filtered
-%Phaeo = [Fs([r/(r-1)](r*Fa-Fo))] * vol_extracted / vol_filtered
+% Chl-a computation:
+% Chl-a = [Fs ([r/(r-1)] (Fo-Fa))] * vol_extracted / vol_filtered
+% Phaeo = [Fs([r/(r-1)](r*Fa-Fo))] * vol_extracted / vol_filtered
 %
-%Input: CRUSIE-chl-grazing-experiments-raw.csv files with Fo, Fa,
-%blank values and calibration coefficients Fs and r
+% Input: CRUSIE-chl-grazing-experiments-raw.csv files with Fo, Fa,
+%        blank values and calibration coefficients Fs and r
 %
-%Outputs: CRUISE-chla-grazing-experiments-chl-calc.csv files.
+% Outputs: CRUISE-chla-grazing-experiments-chl-calc.csv files.
 %
-%Written by Pierre Marrec
+% Written by Pierre Marrec
 %
-%pmarrec@uri.edu
+% pmarrec@uri.edu
 %
-%5/21/2022
+% 1/25/2023
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 clearvars, clc, close all
 
 %Set the directory where we work
-rep = 'C:\Users\pierr\My Drive\NES-LTER_Chla_Cleaning_Rates_Computation\';
+rep = 'C:\Users\pierr\Desktop\PostDoc_URI_Desktop\NES-LTER\NES-LTER_Chla_Cleaning_Rates_Computation\';
 %Set the directory where the input raw data are
 rep1 = strcat(rep,'chl-grazing-experiment-temp-inc-raw\');
 %Set the directory where the output clean data are
