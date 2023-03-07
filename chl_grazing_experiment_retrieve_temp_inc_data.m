@@ -13,7 +13,7 @@
 %
 %
 % Input: CRUSIE-chl-grazing-experiments-ctd-raw.csv files and
-%        CRUISE_temp_inc_X.csv files
+%        CRUISE_temp_inc_X.csv files (X = tank #)
 %
 % Outputs: CRUISE-chla-grazing-experiments-temp-inc-raw.csv files.
 %
@@ -21,13 +21,13 @@
 %
 % pmarrec@uri.edu
 %
-% 1/25/2022
+% 3/7/2023
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 clearvars, clc, close all
 
 %Set the directory where we work
-rep = 'C:\Users\pierr\Desktop\PostDoc_URI_Desktop\NES-LTER\NES-LTER_Chla_Cleaning_Rates_Computation\';
+rep = 'C:\Users\pierr\Desktop\PostDoc_URI_Desktop\NES-LTER\EDI_Growth_Grazing\';
 %Set the directory where the input raw data are
 rep11 = strcat(rep,'chl-grazing-experiment-ctd-raw\');
 rep12 = strcat(rep,'chl-grazing-experiment-temp-inc-data\');

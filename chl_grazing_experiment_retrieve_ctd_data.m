@@ -2,27 +2,22 @@
 % Matlab script for retrieving the DateTime, Temperature, Latitude and Longitude of
 % sampling from the CTD bottles.csv files.
 %
-% Also include the change of the the date_time_utc_start and _end into UTC
-% (they were in LT) and their convertion into into the iso8601format
-% 'yyyy-mm-dd hh:MM:ss+00:00'
-%
-%
 % Input: CRUSIE-chl-grazing-experiments-raw.csv files
 %
 % Outputs: CRUISE-chla-grazing-experiments-ctd-raw.csv files.
 %
 % Written by Pierre Marrec
 %
-%pmarrec@uri.edu
+% pmarrec@uri.edu
 %
-%1/25/2023
+% 3/7/2023
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 clearvars, clc, close all
 
 %Set the directory where we work
-rep = 'C:\Users\pierr\Desktop\PostDoc_URI_Desktop\NES-LTER\NES-LTER_Chla_Cleaning_Rates_Computation\';
+rep = 'C:\Users\pierr\Desktop\PostDoc_URI_Desktop\NES-LTER\EDI_Growth_Grazing\';
 %Set the directory where the input raw data are
 rep1 = strcat(rep,'chl-grazing-experiment-raw\');
 %Set the directory where the output clean data are
@@ -30,7 +25,7 @@ rep2 = strcat(rep,'chl-grazing-experiment-ctd-raw\');
 %URL of the REST-API
 RESTAPI='https://nes-lter-data.whoi.edu/api/ctd/';
 %Set the weboptions for downloading files as table
-options = weboptions('ContentType', 'table');
+options = weboptions('ContentType', 'table', 'Timeout', 30);
 %DateTime format
 iso8601format = 'yyyy-mm-dd hh:MM:ss';
 
@@ -56,7 +51,7 @@ for n1=1:numel(list)
     % Erase the extra " ' " in T1.cast and T1.niskin
     T1.cast=erase(T1.cast,"'");
     T1.niskin=erase(T1.niskin,"'");
-    T1.niskin_other_method=erase(T1.niskin_other_method,"'");
+    T1.niskin_second_cast=erase(T1.niskin_second_cast,"'");
 
     % Identify each unique cast
     a1=unique(T1.cast);
@@ -69,7 +64,7 @@ for n1=1:numel(list)
 
         % for each cast, identify the unique sampling depth
         a2=unique(T1.niskin(b1));
-        a3=unique(T1.niskin_other_method(b1));
+        a3=unique(T1.niskin_second_cast(b1));
 
         for n3=1:length(a2)
             %Get the index of all the values from a given depth
@@ -195,7 +190,7 @@ for n1=1:numel(list)
     %Make sure cast and niskin are in text format in the table
     T1.cast=strcat(T1.cast,"'");
     T1.niskin=strcat(T1.niskin,"'");
-    T1.niskin_other_method=strcat(T1.niskin_other_method,"'");
+    T1.niskin_second_cast=strcat(T1.niskin_second_cast,"'");
 
     %Save the new CRUISE-chla-grazing-experiments-clean.csv files for each
     %cruise

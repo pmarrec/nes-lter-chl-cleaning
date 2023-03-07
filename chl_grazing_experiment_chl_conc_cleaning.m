@@ -22,14 +22,14 @@
 %
 % pmarrec@uri.edu
 %
-% 1/25/2023
+% 3/7/2023
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 clearvars, clc, close all
 
 %Set the directory where we work
-rep = 'C:\Users\pierr\Desktop\PostDoc_URI_Desktop\NES-LTER\NES-LTER_Chla_Cleaning_Rates_Computation\';
+rep = 'C:\Users\pierr\Desktop\PostDoc_URI_Desktop\NES-LTER\EDI_Growth_Grazing\';
 %Set the directory where the input raw data are
 rep1 = strcat(rep,'chl-grazing-experiment-fofa-clean\');
 %Set the directory where the output clean data are
