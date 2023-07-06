@@ -17,7 +17,7 @@
 clearvars, clc, close all
 
 %Set the directory where we work
-rep = 'C:\Users\pierr\Desktop\PostDoc_URI_Desktop\NES-LTER\EDI_Growth_Grazing\';
+rep = 'C:\Users\pierr\Desktop\PostDoc_URI_Desktop\NES-LTER\EDI_Growth_Grazing\DataPackage_GFF_and_10um\';
 %Set the directory where the input raw data are
 rep1 = strcat(rep,'chl-grazing-experiment-raw\');
 %Set the directory where the output clean data are

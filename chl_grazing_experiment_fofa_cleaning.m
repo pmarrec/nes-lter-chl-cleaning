@@ -30,7 +30,7 @@
 clearvars, clc, close all
 
 %Set the directory where we work
-rep = 'C:\Users\pierr\Desktop\PostDoc_URI_Desktop\NES-LTER\EDI_Growth_Grazing\';
+rep = 'C:\Users\pierr\Desktop\PostDoc_URI_Desktop\NES-LTER\EDI_Growth_Grazing\DataPackage_GFF_and_10um\';
 %Set the directory where the input raw data are
 rep1 = strcat(rep,'chl-grazing-experiment-chl-calc\');
 %Set the directory where the output clean data are
@@ -80,8 +80,6 @@ for n1=1:numel(list)
                     % 2) witihn +/- 2 StdDev confidence interval for a given type of filter
                     % GFF after screening with 200um mesh = >0&<200um
                     % 10um after screening with 200um mesh = >10&<200um
-                    % GFF without screening with 200um mesh = >0 (for EN627 L11-B)
-                    % GFF with screening with 10um mesh = >0&<10um (for EN668)
                     %%%%%%%%%%%%%%%%%%%%%%%%%
 
                     %1st step, QC based on FoFa ratios

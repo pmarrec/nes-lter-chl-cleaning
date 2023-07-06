@@ -31,7 +31,7 @@
 clearvars, clc, close all
 
 %Set the directory where we work
-rep = 'C:\Users\pierr\Desktop\PostDoc_URI_Desktop\NES-LTER\EDI_Growth_Grazing\';
+rep = 'C:\Users\pierr\Desktop\PostDoc_URI_Desktop\NES-LTER\EDI_Growth_Grazing\DataPackage_GFF_and_10um\';
 %Set the directory where the input raw data are
 rep1 = strcat(rep,'chl-grazing-experiment-chl-conc-clean\');
 %Set the directory where the output clean data are
@@ -92,15 +92,7 @@ T1.chl(c1)=0.20*chl_avg;
 %Assigned a iode_quality_flag of 1 for all these values
 T1.iode_quality_flag(c1)=1;
 clear c1 c2 chl_avg
-%Identify all values obtained with >0&<10 filters at T0 dil
-c1=b1 & strcmp(T1.filter_size,'>0&<10') & strcmp(T1.T0_TF,'T0') & strcmp(T1.dilution,'dil');
-%Get the mean value of T0 wsw >0&<200
-c2=b1 & strcmp(T1.filter_size,'>0&<10') & strcmp(T1.T0_TF,'T0') & strcmp(T1.dilution,'wsw') & T1.iode_quality_flag==1;
-chl_avg=mean(T1.chl(c2));
-%Replace the T0 dil >0&<200 values by 20% of wsw
-T1.chl(c1)=0.20*chl_avg;
-%Assigned a iode_quality_flag of 1 for all these values
-T1.iode_quality_flag(c1)=1;
+
 %Save the new CRUISE-chla-grazing-experiments-clean.csv files for each
 %cruise
 newname=strrep(list(n1).name,'chl-conc-clean','clean');%Replace raw by clean

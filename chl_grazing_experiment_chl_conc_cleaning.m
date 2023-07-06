@@ -29,7 +29,7 @@
 clearvars, clc, close all
 
 %Set the directory where we work
-rep = 'C:\Users\pierr\Desktop\PostDoc_URI_Desktop\NES-LTER\EDI_Growth_Grazing\';
+rep = 'C:\Users\pierr\Desktop\PostDoc_URI_Desktop\NES-LTER\EDI_Growth_Grazing\DataPackage_GFF_10um\';
 %Set the directory where the input raw data are
 rep1 = strcat(rep,'chl-grazing-experiment-fofa-clean\');
 %Set the directory where the output clean data are
@@ -168,98 +168,7 @@ for n1=1:numel(list)
             end
             clear chl_avg chl_std chl_llim chl_ulim chl_cv
 
-            %%%%%%%%%%%%%%%%%%%%%%%%%%
-            %T0 and >0&<10 filters (10um size fractionation EN668)
-            %%%%%%%%%%%%%%%%%%%%%%%%%%
-
-            %Identify all values obtained with >0&<10 filters at T0
-            c1=b2 & strcmp(T1.filter_size,'>0&<10') & strcmp(T1.T0_TF,'T0');
-
-            %Identify as group the dil and wsw values
-            [d1,D1]=findgroups(T1.dilution(c1));
-                        
-            %Create a new vector to store the mean values
-            chl_avg=nan(max(d1),1);
-            %Create a new vector to store the stdev values
-            chl_std=nan(max(d1),1);
-            %Create a new vector to store the %CV values
-            chl_cv=nan(max(d1),1);
-
-            for m1=1:max(d1)
-                %Identify the values of the given group with a
-                %iode_quality_flag of 1
-                c2=c1 & strcmp(T1.dilution,D1(m1)) & T1.iode_quality_flag==1;
-                chl_avg(m1)=mean(T1.chl(c2));
-                chl_std(m1)=std(T1.chl(c2));
-                chl_cv(m1)=chl_std(m1)/chl_avg(m1);
-            end
-
-            %Define the lower limit values
-            chl_llim=chl_avg-2*mean(chl_cv)*chl_avg;
-            %Define the upper limit values
-            chl_ulim=chl_avg+2*mean(chl_cv)*chl_avg;
-
-            %Check if the values for each type of treatment are in the
-            %confidence interval llim<x<ulim. If they are not, values are
-            %flag as questionable/suspect
-            for m1=1:max(d1)
-                c2=c1 & strcmp(T1.dilution,D1(m1)) & T1.iode_quality_flag==1;
-                for M1=1:length(c2)
-                    if c2(M1)==1
-                        if (T1.chl(M1)<chl_llim(m1)) || (T1.chl(M1)>chl_ulim(m1))
-                            T1.iode_quality_flag(M1)=3;
-                        end
-                    end
-                end
-            end
-            clear chl_avg chl_std chl_llim chl_ulim chl_cv
-
-            %%%%%%%%%%%%%%%%%%%%%%%%%%
-            %T0 and >0 filters (no 200um screening EN627 L11-B)
-            %%%%%%%%%%%%%%%%%%%%%%%%%%
-
-            %Identify all values obtained with >0&<10 filters at T0
-            c1=b2 & strcmp(T1.filter_size,'>0') & strcmp(T1.T0_TF,'T0');
-
-            %Identify as group the dil and wsw values
-            [d1,D1]=findgroups(T1.dilution(c1));
-                        
-            %Create a new vector to store the mean values
-            chl_avg=nan(max(d1),1);
-            %Create a new vector to store the stdev values
-            chl_std=nan(max(d1),1);
-            %Create a new vector to store the %CV values
-            chl_cv=nan(max(d1),1);
-
-            for m1=1:max(d1)
-                %Identify the values of the given group with a
-                %iode_quality_flag of 1
-                c2=c1 & strcmp(T1.dilution,D1(m1)) & T1.iode_quality_flag==1;
-                chl_avg(m1)=mean(T1.chl(c2));
-                chl_std(m1)=std(T1.chl(c2));
-                chl_cv(m1)=chl_std(m1)/chl_avg(m1);
-            end
-
-            %Define the lower limit values
-            chl_llim=chl_avg-2*mean(chl_cv)*chl_avg;
-            %Define the upper limit values
-            chl_ulim=chl_avg+2*mean(chl_cv)*chl_avg;
-
-            %Check if the values for each type of treatment are in the
-            %confidence interval llim<x<ulim. If they are not, values are
-            %flag as questionable/suspect
-            for m1=1:max(d1)
-                c2=c1 & strcmp(T1.dilution,D1(m1)) & T1.iode_quality_flag==1;
-                for M1=1:length(c2)
-                    if c2(M1)==1
-                        if (T1.chl(M1)<chl_llim(m1)) || (T1.chl(M1)>chl_ulim(m1))
-                            T1.iode_quality_flag(M1)=3;
-                        end
-                    end
-                end
-            end
-            clear chl_avg chl_std chl_llim chl_ulim chl_cv
-
+            
             %%%%%%%%%%%%%%%%%%%%%%%%%%
             %TF and >0&<200 filters (GFF)
             %%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -364,110 +273,7 @@ for n1=1:numel(list)
 
             clear chl_avg chl_std chl_llim chl_ulim chl_cv
 
-            %%%%%%%%%%%%%%%%%%%%%%%%%%
-            %TF and >0&<10 filters (10um size fractionation EN668)
-            %%%%%%%%%%%%%%%%%%%%%%%%%%
             
-            %Identify all values obtained with >0&<10 filters at TF
-            c1=b2 & strcmp(T1.filter_size,'>0&<10') & strcmp(T1.T0_TF,'TF');
-
-            %Identify as group based on dilution, nutrient_treatment, light
-            %level and replicate_bottle
-            [d1,D1,D2,D3,D4]=findgroups(T1.dilution(c1),T1.nutrient_treatment(c1),T1.light_level(c1),T1.replicate_bottle(c1));
-                        
-            %Create a new vector to store the mean values
-            chl_avg=nan(max(d1),1);
-            %Create a new vector to store the stdev values
-            chl_std=nan(max(d1),1);
-            %Create a new vector to store the %CV values
-            chl_cv=nan(max(d1),1);
-
-            for m1=1:max(d1)
-                %Identify the values of the given group with a
-                %iode_quality_flag of 1
-                c2=c1 & strcmp(T1.dilution,D1(m1)) & strcmp(T1.nutrient_treatment,D2(m1)) ...
-                    & strcmp(T1.light_level,D3(m1)) & strcmp(T1.replicate_bottle,D4(m1))...
-                    & T1.iode_quality_flag==1;
-                chl_avg(m1)=mean(T1.chl(c2));
-                chl_std(m1)=std(T1.chl(c2));
-                chl_cv(m1)=chl_std(m1)/chl_avg(m1);
-            end
-
-            %Define the lower limit values
-            chl_llim=chl_avg-2*mean(chl_cv)*chl_avg;
-            %Define the upper limit values
-            chl_ulim=chl_avg+2*mean(chl_cv)*chl_avg;
-
-            %Check if the values for each type of treatment are in the
-            %confidence interval llim<x<ulim. If they are not, values are
-            %flag as questionable/suspect
-            for m1=1:max(d1)
-                c2=c1 & strcmp(T1.dilution,D1(m1)) & strcmp(T1.nutrient_treatment,D2(m1)) ...
-                    & strcmp(T1.light_level,D3(m1)) & strcmp(T1.replicate_bottle,D4(m1))...
-                    & T1.iode_quality_flag==1;
-                for M1=1:length(c2)
-                    if c2(M1)==1
-                        if (T1.chl(M1)<chl_llim(m1)) || (T1.chl(M1)>chl_ulim(m1))
-                            T1.iode_quality_flag(M1)=3;
-                        end
-                    end
-                end
-            end
-
-            clear chl_avg chl_std chl_llim chl_ulim chl_cv
-
-            %%%%%%%%%%%%%%%%%%%%%%%%%%
-            %TF and >0 filters (no 200um screening EN627 L11-B)
-            %%%%%%%%%%%%%%%%%%%%%%%%%%
-            
-            %Identify all values obtained with >10 filters at TF
-            c1=b2 & strcmp(T1.filter_size,'>0') & strcmp(T1.T0_TF,'TF');
-
-            %Identify as group based on dilution, nutrient_treatment, light
-            %level and replicate_bottle
-            [d1,D1,D2,D3,D4]=findgroups(T1.dilution(c1),T1.nutrient_treatment(c1),T1.light_level(c1),T1.replicate_bottle(c1));
-                        
-            %Create a new vector to store the mean values
-            chl_avg=nan(max(d1),1);
-            %Create a new vector to store the stdev values
-            chl_std=nan(max(d1),1);
-            %Create a new vector to store the %CV values
-            chl_cv=nan(max(d1),1);
-
-            for m1=1:max(d1)
-                %Identify the values of the given group with a
-                %iode_quality_flag of 1
-                c2=c1 & strcmp(T1.dilution,D1(m1)) & strcmp(T1.nutrient_treatment,D2(m1)) ...
-                    & strcmp(T1.light_level,D3(m1)) & strcmp(T1.replicate_bottle,D4(m1))...
-                    & T1.iode_quality_flag==1;
-                chl_avg(m1)=mean(T1.chl(c2));
-                chl_std(m1)=std(T1.chl(c2));
-                chl_cv(m1)=chl_std(m1)/chl_avg(m1);
-            end
-
-            %Define the lower limit values
-            chl_llim=chl_avg-2*mean(chl_cv)*chl_avg;
-            %Define the upper limit values
-            chl_ulim=chl_avg+2*mean(chl_cv)*chl_avg;
-
-            %Check if the values for each type of treatment are in the
-            %confidence interval llim<x<ulim. If they are not, values are
-            %flag as questionable/suspect
-            for m1=1:max(d1)
-                c2=c1 & strcmp(T1.dilution,D1(m1)) & strcmp(T1.nutrient_treatment,D2(m1)) ...
-                    & strcmp(T1.light_level,D3(m1)) & strcmp(T1.replicate_bottle,D4(m1))...
-                    & T1.iode_quality_flag==1;
-                for M1=1:length(c2)
-                    if c2(M1)==1
-                        if (T1.chl(M1)<chl_llim(m1)) || (T1.chl(M1)>chl_ulim(m1))
-                            T1.iode_quality_flag(M1)=3;
-                        end
-                    end
-                end
-            end
-
-            clear chl_avg chl_std chl_llim chl_ulim chl_cv
-
         end
 
 
